@@ -53,9 +53,12 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# added 13 jul 17 for static page/tasks api
+# added 13 jul 17 for static page/tasks api (lesson 4)
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'
 end
 
 gem "factory_girl_rails", "~> 4.0"
+
+# added 14 jul 17 for loading tasks on page (lesson 7)
+gem 'jquery-rails'

@@ -11,5 +11,10 @@
 // about supported directives.
 //
 //= require rails-ujs
+
+// next 2 lines added 14 jul 17 for loading tasks on page (lesson 7)
+//= require jquery
+//= require jquery_ujs
+
 //= require turbolinks
 //= require_tree .

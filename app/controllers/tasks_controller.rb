@@ -2,6 +2,6 @@
 
 class TasksController < ApplicationController
   def index
-    render json: Task.all
+    render json: Task.all     # displays info in json format, not html
   end
 end
