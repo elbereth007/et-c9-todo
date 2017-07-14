@@ -7,10 +7,22 @@ RSpec.describe TasksController, type: :controller do
     it "should list the tasks in the database" do
       task1 = FactoryGirl.create(:task)
       task2 = FactoryGirl.create(:task)
+      
+# next line added 14 jul 17 for consistent ordering (lesson 12)
+      task1.update_attributes(title: "Something else")
+      
       get :index
       expect(response).to have_http_status :success
       response_value = ActiveSupport::JSON.decode(@response.body)
       expect(response_value.count).to eq(2)
+      
+# next 4 lines added 14 jul 17 for consistent ordering (lesson 12)
+      response_ids = response_value.collect do |task|
+        task["id"]
+      end
+      
+      expect(response_ids).to eq([task1.id, task2.id])
+      
     end
   end
   

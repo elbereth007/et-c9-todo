@@ -2,7 +2,9 @@
 
 class TasksController < ApplicationController
   def index
-    render json: Task.all     # displays info in json format, not html
+#    render json: Task.all     # displays info in json format, not html
+# next line added/previous line commented out 14 jul 17 for consistent ordering (lesson 12)
+    render json: Task.order(:id)  # can also use (id: :asc) or (id: :desc) for ascending or descending order
   end
   
 # update method added 14 jul 17 for update tasks (lesson 10)
