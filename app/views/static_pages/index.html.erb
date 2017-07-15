@@ -25,19 +25,7 @@
 <script>
   $(function() {
     
-// next 5 lines added/modified 14 jul 17 for adding task form/form submission (lessons 14, 16)
-    $('#new-form').submit(function(event) {
-      event.preventDefault();
-      var textbox = $('.new-todo');
-      var payload = {
-        task: {
-          title: textbox.val()
-        }
-      };
-      $.post("/tasks", payload).success(function(data) {
-        console.log("Successful HTTP Request");
-      });
-    });
+// next 5 lines added/modified/moved 14 jul 17 for adding task form/form submission/add tasks to page (lessons 14, 16, 17)
 
 // code block mmoved here 14 jul 17 for refactoring code (lesson 13)
     // The taskHtml method takes in a JavaScript representation
@@ -88,5 +76,26 @@
       $('.toggle').change(toggleTask);
       
     });
+    
+    $('#new-form').submit(function(event) {
+      event.preventDefault();
+      var textbox = $('.new-todo');
+      var payload = {
+        task: {
+          title: textbox.val()
+        }
+      };
+      $.post("/tasks", payload).success(function(data) {
+        
+// next 2 lines added/modified 14 jul 17 for adding tasks to page (lesson 17)
+        var htmlString = taskHtml(data);
+        var ulTodos = $('.todo-list');
+        ulTodos.append(htmlString);
+        $('.toggle').click(toggleTask);
+//        console.log(htmlString);
+//        console.log(data);          // added/deleted 14 jul 17 for adding tasks to page (lesson 17)
+      });
+    });
+    
   });
 </script>
