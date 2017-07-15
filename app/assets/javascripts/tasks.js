@@ -4,7 +4,7 @@
 
   $(function() {
     
-// next 5 lines added/modified/moved 14 jul 17 for adding task form/form submission/add tasks to page (lessons 14, 16, 17)
+// next 5 lines added/modified/moved 14 jul 17 for adding task form/form submission/add tasks to page/adding strikethru (lessons 14, 16, 17, 20)
 
 // code block mmoved here 14 jul 17 for refactoring code (lesson 13)
     // The taskHtml method takes in a JavaScript representation
@@ -12,7 +12,11 @@
     // <li> tags
     function taskHtml(task) {
       var checkedStatus = task.done ? "checked" : "";
-      var liElement = '<li><div class="view"><input class="toggle" type="checkbox"' +
+      // next 3 lines added 14 jul 17 for strikethru (lesson 20)
+      var liClass = task.done ? "completed" : "";
+      var liElement = '<li id="listItem-' + task.id +'" class="' + liClass + '">' +
+      '<div class="view"><input class="toggle" type="checkbox"' +
+      
         " data-id='" + task.id + "'" +     // added 14  jul 17 for toggling completion (lesson 11)
         checkedStatus +
         '><label>' +
@@ -39,7 +43,18 @@
         task: {
           done: doneValue
         }
-      });
+        
+// next 3 lines added 14 jul 17 for strikethru (lesson 20)
+      }).success(function(data) {
+//      console.log("Successfully Toggled");
+//      console.log(data);
+      var liHtml = taskHtml(data);
+//      console.log(liHtml);
+      var $li = $("#listItem-" + data.id);
+      $li.replaceWith(liHtml);
+      $('.toggle').change(toggleTask);
+    } );
+    
     }
     
     $.get("/tasks").success( function( data ) {
