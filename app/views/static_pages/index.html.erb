@@ -21,15 +21,22 @@
   </section>
 </section>
 
-<!-- next 14 lines added/moved 14 jul 17 for adding tasks to page (lessons 7, 13) -->
+<!-- next 14 lines added/moved/modified 14 jul 17 for adding tasks to page/refactoring/form submission (lessons 7, 13, 16) -->
 <script>
   $(function() {
     
-// next 5 lines added 14 jul 17 for adding task form (lesson 14)
+// next 5 lines added/modified 14 jul 17 for adding task form/form submission (lessons 14, 16)
     $('#new-form').submit(function(event) {
       event.preventDefault();
       var textbox = $('.new-todo');
-      console.log("Task: ", textbox.val());
+      var payload = {
+        task: {
+          title: textbox.val()
+        }
+      };
+      $.post("/tasks", payload).success(function(data) {
+        console.log("Successful HTTP Request");
+      });
     });
 
 // code block mmoved here 14 jul 17 for refactoring code (lesson 13)
