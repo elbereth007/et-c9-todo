@@ -71,6 +71,7 @@
         var ulTodos = $('.todo-list');
         ulTodos.append(htmlString);
         $('.toggle').click(toggleTask);
+        $('.new-todo').val('');       // added 14 jul 17 to blank out text box after submission, for polishing design (lesson 19)
 //        console.log(htmlString);
 //        console.log(data);          // added/deleted 14 jul 17 for adding tasks to page (lesson 17)
       });
