@@ -14,11 +14,17 @@ class TasksController < ApplicationController
     render json: task
   end
   
+# create method added 14 jul 17 for task creation api (lesson 15)
+  def create
+    task = Task.create(task_params)
+    render json: task
+  end
+  
   private
 
 # task_params method added 14 jul 17 for update tasks (lesson 10)
   def task_params
-    params.require(:task).permit(:done)
+    params.require(:task).permit(:done, :title)   # :title added 14 jul 17 for task creation api (lesson 15)
   end
   
 end
